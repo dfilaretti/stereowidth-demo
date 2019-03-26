@@ -1,8 +1,16 @@
 # Stereo Width Demo
 
-A simple implementation of mid-side processing (see e.g. [this article](https://theproaudiofiles.com/mid-side-processing/)). 
+A simple implementation of _mid-side processing_. 
 
 ![StereoWidth-Screenshot](screenshot.png)
+
+Basically, when working with stereo data we usually work with two distinct signals: left and right. 
+When doing mid-side processing instead, we apply some math in order to separate the original signal into a "mid" (i.e. mono) and "side" (i.e. stereo) components. This allows for example to tweak the relative amplitides in order to make the original source "more stereo" or "more mono", or for example to apply certain processing (eq, compression etc.) only to the mono part of a sound etc.
+
+After the desired processing is applied, the data is converted back to the familiar left+right format.
+For better and more detailed explanations see e.g. [this](https://theproaudiofiles.com/mid-side-processing/) or [this](articles)
+
+## Description
 
 There are two simple controls:
 
