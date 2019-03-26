@@ -15,22 +15,19 @@
 StereoWidthAudioProcessorEditor::StereoWidthAudioProcessorEditor (StereoWidthAudioProcessor& p, AudioProcessorValueTreeState& vts)
     : AudioProcessorEditor (&p), processor (p), valueTreeState(vts)
 {
-	// Setup lookandfeel
 	getLookAndFeel().setColour(Slider::trackColourId, Colours::white);
 	getLookAndFeel().setColour(Slider::thumbColourId, Colours::orange);
 
-	// setup labels
 	widthLabel.setText("Width", dontSendNotification);
 	gainLabel.setText("Gain", dontSendNotification);
 
 	addAndMakeVisible(widthLabel);
 	addAndMakeVisible(gainLabel);
-
 	addAndMakeVisible(widthSlider);
-	widthSliderAttachment.reset(new SliderAttachment(valueTreeState, "WIDTH", widthSlider));
-
 	addAndMakeVisible(gainSlider);
+
 	gainSliderAttachment.reset(new SliderAttachment(valueTreeState, "GAIN", gainSlider));
+	widthSliderAttachment.reset(new SliderAttachment(valueTreeState, "WIDTH", widthSlider));
 
 	setSize(400, 100);
 }

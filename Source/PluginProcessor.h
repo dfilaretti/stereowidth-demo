@@ -57,7 +57,6 @@ public:
 
 private:
     //==============================================================================
-
 	AudioProcessorValueTreeState parameters;
 
 	float* widthParam = nullptr;
