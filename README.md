@@ -4,13 +4,11 @@ A simple implementation of _mid-side processing_.
 
 ![StereoWidth-Screenshot](screenshot.png)
 
-Basically, working with stereo data means dealing with two distinct signals, left and right - if they are completely the same, than the sound is "fully mono", the more different thay are, the more stereo the sound. 
+Basically, working with stereo data means dealing with two distinct signals, left and right - if they are completely the same, than the sound is "fully mono", the more different thay are, the "more stereo" the sound. 
 
-When doing mid-side processing, we apply some math in order to separate the original signal into a "mid" (mono) and "side" (stereo) components. This allows for example to tweak the relative amplitides in order to make the original source "more stereo" or "more mono", or to selectively apply processing only to the mono/stereo part of a sound. 
+When doing mid-side processing instead, we apply some math in order to separate the original signal into a "mid" (mono) and "side" (stereo) components (rather than left and right). This allows for example to tweak the relative amplitides in order to make the original source "more stereo" or "more mono", or to selectively apply processing only to the mono/stereo part of a sound. 
 
-After the desired processing is applied, the data is converted back to the familiar left+right format so that it can be played by standard players, DAWs etc. 
-
-For better and more detailed explanations see links below. 
+After the desired processing is applied, the data is converted back to the familiar left+right format (using the inverse process) so that it can be reproduces by standard players, DAWs etc. 
 
 ## Description
 
