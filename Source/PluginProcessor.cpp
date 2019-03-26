@@ -13,7 +13,9 @@
 
 //==============================================================================
 StereoWidthAudioProcessor::StereoWidthAudioProcessor() 
-	: parameters(*this, nullptr)
+	: parameters(*this, nullptr, "StereoWidth", 
+					{ std::make_unique<AudioParameterFloat>("WIDTH", "Width", NormalisableRange<float>(0.0f, 2.0f), 1.0f),
+					  std::make_unique<AudioParameterFloat>("GAIN", "Gain", NormalisableRange<float>(-99.f, 12.f), 0.f) })
 #ifndef JucePlugin_PreferredChannelConfigurations
     , AudioProcessor (BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
@@ -25,27 +27,6 @@ StereoWidthAudioProcessor::StereoWidthAudioProcessor()
                        )
 #endif
 {
-	// ----- Init params
-
-	parameters.createAndAddParameter("WIDTH",                              // parameter ID
-		                             "Width",                              // parameter name
-		                             String(),                             // parameter label (suffix)
-		                             NormalisableRange<float>(0.0f, 2.0f), // range
-		                             1.0f,                                 // default value
-		                             nullptr,
-		                             nullptr);
-
-	// TODO: use DB scale instead
-	parameters.createAndAddParameter("GAIN",
-		                             "Gain",
-		                             String(),
-		                             NormalisableRange<float>(-99.f, 12.f),
-		                             0.f,
-		                             nullptr,
-		                             nullptr);
-
-	parameters.state = ValueTree(Identifier("StereoWidth"));
-
 	widthParam = parameters.getRawParameterValue("WIDTH");
 	gainParam  = parameters.getRawParameterValue("GAIN");
 }
@@ -103,21 +84,21 @@ int StereoWidthAudioProcessor::getCurrentProgram()
     return 0;
 }
 
-void StereoWidthAudioProcessor::setCurrentProgram (int index)
+void StereoWidthAudioProcessor::setCurrentProgram (int /*index*/)
 {
 }
 
-const String StereoWidthAudioProcessor::getProgramName (int index)
+const String StereoWidthAudioProcessor::getProgramName (int /*index*/)
 {
     return {};
 }
 
-void StereoWidthAudioProcessor::changeProgramName (int index, const String& newName)
+void StereoWidthAudioProcessor::changeProgramName (int /*index*/, const String& /*newName*/)
 {
 }
 
 //==============================================================================
-void StereoWidthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void StereoWidthAudioProcessor::prepareToPlay (double /*sampleRate*/, int /*samplesPerBlock*/)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -153,7 +134,7 @@ bool StereoWidthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
 }
 #endif
 
-void StereoWidthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void StereoWidthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBuffer& /*midiMessages*/)
 {
 	ScopedNoDenormals noDenormals;
 	auto totalNumInputChannels = getTotalNumInputChannels();
